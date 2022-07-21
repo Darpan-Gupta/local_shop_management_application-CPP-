@@ -7,17 +7,18 @@ using namespace std;
 
 void menu();
 void products_data();
-void costomer_input();
+void category_display();
+// void costomer_input();
 void reciept();
 
 
 
 class product{
-    int id, price, stock;
-    string name;
     public:
+    int id, price, stock,category;
+    string name;
     void input(){
-        cin>>id>>name>>price>>stock;
+        cin>>id>>category>>name>>price>>stock;
     }
 
     void output(){
@@ -28,7 +29,7 @@ class product{
 
 
 
-int start_condition, no_of_products;
+int start_condition, no_of_products, input_category;
 vector<product> p;
 
 
@@ -48,7 +49,7 @@ int main()
         cin>>username;
         cout<<"please enter password: ";
         cin>>password;
-        if (username=="jaggigernalstore" && password=="xyz"   )
+        if (username=="jaggi" && password=="partysharty"   )
         {
             products_data();
             cout<<"Products have been registered successfully"<<endl<<endl<<endl;
@@ -72,7 +73,7 @@ int main()
     } 
 
     else if(start_condition==2){
-        cout<<"Hello Dear customer"<<endl<<"Our Products"<<endl;
+        // category_display();
         menu();        
     }
 
@@ -92,7 +93,7 @@ void products_data(){
     cout<<"how many products u have ";
         cin>>no_of_products;
         product a;       
-        cout<<"enter id name price and stock";
+        cout<<"enter id category name price and stock";
 
         for (int i = 0; i < no_of_products; i++)
         {
@@ -101,12 +102,84 @@ void products_data(){
         }  
 }
 
-
 void menu (){
-     cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
+    level_category:
+    system("cls");
+    cout<<"Hello Dear customer"<<endl;
+    cout<<"Please select the catagory of products you want to buy"<<endl<<endl;
+    cout<<"To view electronics procducts enter 1"<<endl;
+    cout<<"To view food items enter 2"<<endl;
+    cout<<"To view stationary products enter 3"<<endl;
+    cout<<"To view selfcare products 4"<<endl;
+    cout<<"To view all products enter 5"<<endl;
+    cin>>input_category;
+
+    switch (input_category)
+    {
+    case 1:
+        cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
+        for (int i = 0; i < no_of_products; i++)
+        {
+            if (p[i].category==1)
+            {
+                p[i].output();
+            }         
+        }
+        break;
+    case 2:
+        cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
+        for (int i = 0; i < no_of_products; i++)
+        {
+            if (p[i].category==2)
+            {
+                p[i].output();
+            }
+        }
+        break;
+    case 3:
+        cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
+        for (int i = 0; i < no_of_products; i++)
+        {
+             if (p[i].category==3)
+            {
+                p[i].output();
+            }
+        }
+        break;
+    case 4:
+        cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
+        for (int i = 0;i < no_of_products; i++)
+        {
+             if (p[i].category==4)
+            {
+                p[i].output();
+            }
+        }
+        break;
+    case 5:
+        cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
             p[i].output();
         }
+        break;
+    
+    default:
+        cout<<"Please enter a valid input";
+        getch();
+        system("cls");
+        goto level_category;
+        break;
+    }
+    
 }
+
+// void category_display(){
+//     cout<<"Please select the catagory of products you want to buy"<<endl<<endl;
+//     cout<<"To view electronics procducts enter 1"<<endl;
+//     cout<<"To view food items enter 2"<<endl;
+//     cout<<"To view stationary products enter 3"<<endl;
+//     cout<<"To view selfcare products 4"<<endl;
+//     cout<<"To view all products enter 5"<<endl;
+// }
 
