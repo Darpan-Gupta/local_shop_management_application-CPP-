@@ -41,14 +41,34 @@ int main()
     cin>>start_condition;
     if (start_condition==1)
     {
-        products_data();
-        cout<<"Products have been registered successfully"<<endl<<endl<<endl;
-        cout<<"Press any key to return to start"<<endl;
-        getch();
-        // so that program can pause and start when we enter something
-        system("cls");
-        // to clear the terminal 
-        goto start;
+        security:
+        string username, password;
+        cout<<"hello master"<<endl;
+        cout<<"please enter username: ";
+        cin>>username;
+        cout<<"please enter password: ";
+        cin>>password;
+        if (username=="jaggigernalstore" && password=="xyz"   )
+        {
+            products_data();
+            cout<<"Products have been registered successfully"<<endl<<endl<<endl;
+            cout<<"Press any key to return to start"<<endl;
+            getch();
+            // so that program can pause and start when we enter something
+            system("cls");
+            // to clear the terminal 
+            goto start;
+        }
+        
+        else{
+            cout<<"Please enter correct username and password"<<endl<<endl;
+            cout<<"press any key to retry";
+            getch();
+            system("cls");
+            goto security;
+        }
+        
+        
     } 
 
     else if(start_condition==2){
