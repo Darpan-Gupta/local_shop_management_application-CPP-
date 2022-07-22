@@ -15,23 +15,32 @@ void reciept();
 
 class product{
     public:
-    int id, price, stock,category;
+    int id, price,category;
     string name;
     void input(){
-        cin>>id>>category>>name>>price>>stock;
+        cin>>id>>category>>name>>price;
     }
 
     void output(){
-        cout<<id<<"\t\t"<<name<<"\t\t"<<price<<"\t\t"<<stock<<endl;
+        cout<<id<<"\t\t"<<name<<"\t\t"<<price<<endl;
+    }
+
+};
+
+class bill{
+     public:
+    int id, price,  category, quantity;
+    string name;
+    void output(){
+        cout<<id<<"\t\t"<<name<<"\t\t"<<price<<"\t\t"<<quantity<<endl;
     }
 };
 
 
 
-
 int start_condition, no_of_products, input_category;
 vector<product> p;
-vector<product> input_products;
+vector<bill> input_products;
 
 
 
@@ -94,7 +103,7 @@ void products_data(){
     cout<<"how many products u have ";
         cin>>no_of_products;
         product a;       
-        cout<<"enter id category name price and stock";
+        cout<<"enter id category name price and stock"<<endl;
 
         for (int i = 0; i < no_of_products; i++)
         {
@@ -118,7 +127,7 @@ void menu (){
     switch (input_category)
     {
     case 1:
-        cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
+        cout<<"id\t\tname\t\tprice"<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
             if (p[i].category==1)
@@ -129,7 +138,7 @@ void menu (){
         customer_input();
         break;
     case 2:
-        cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
+        cout<<"id\t\tname\t\tprice"<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
             if (p[i].category==2)
@@ -140,7 +149,7 @@ void menu (){
         customer_input();
         break;
     case 3:
-        cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
+        cout<<"id\t\tname\t\tprice"<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
              if (p[i].category==3)
@@ -151,7 +160,7 @@ void menu (){
         customer_input();
         break;
     case 4:
-        cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
+        cout<<"id\t\tname\t\tprice"<<endl;
         for (int i = 0;i < no_of_products; i++)
         {
              if (p[i].category==4)
@@ -162,7 +171,7 @@ void menu (){
         customer_input();
         break;
     case 5:
-        cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
+        cout<<"id\t\tname\t\tprice"<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
             p[i].output();
@@ -182,14 +191,19 @@ void menu (){
 
 void customer_input(){
     cout<<"Enter the id the product you want to buy"<<endl;
-    int product_input_id;
+    int product_input_id, product_quantity;
     cin>>product_input_id;
-    product b;
+    cout<<"how many pieces you want to buy: "<<endl;
+    cin>>product_quantity;
+    bill b;
     for (int i = 0; i < p.size(); i++)
     {
         if (p[i].id==product_input_id)
         {
-            b = p[i];
+            b.id=p[i].id;
+            b.name=p[i].name;
+            b.price=p[i].price;
+            b.quantity=product_quantity;
             input_products.push_back(b);
         }
         
@@ -211,7 +225,7 @@ void customer_input(){
         menu();
     }
     else if(number == 2){
-        // reciept();
+        reciept();
     }
     else if(number == 3){
         system("cls");
@@ -224,5 +238,18 @@ void customer_input(){
         goto level_customer_input;
     }
     
+}
+
+void reciept(){
+
+    cout<<"your bill"<<endl;
+    cout<<"id\t\tname\t\tprice\t\tquantity"<<endl;
+    for (int i = 0; i < input_products.size() ; i++)
+    {
+        input_products[i].output();
+    }
+
+    
+
 }
 
