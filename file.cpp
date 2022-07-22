@@ -8,7 +8,7 @@ using namespace std;
 void menu();
 void products_data();
 void category_display();
-// void costomer_input();
+void customer_input();
 void reciept();
 
 
@@ -31,6 +31,7 @@ class product{
 
 int start_condition, no_of_products, input_category;
 vector<product> p;
+vector<product> input_products;
 
 
 
@@ -49,7 +50,7 @@ int main()
         cin>>username;
         cout<<"please enter password: ";
         cin>>password;
-        if (username=="jaggi" && password=="partysharty"   )
+        if (username=="jaggi" && password=="xyz"   )
         {
             products_data();
             cout<<"Products have been registered successfully"<<endl<<endl<<endl;
@@ -125,6 +126,7 @@ void menu (){
                 p[i].output();
             }         
         }
+        customer_input();
         break;
     case 2:
         cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
@@ -135,6 +137,7 @@ void menu (){
                 p[i].output();
             }
         }
+        customer_input();
         break;
     case 3:
         cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
@@ -145,6 +148,7 @@ void menu (){
                 p[i].output();
             }
         }
+        customer_input();
         break;
     case 4:
         cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
@@ -155,6 +159,7 @@ void menu (){
                 p[i].output();
             }
         }
+        customer_input();
         break;
     case 5:
         cout<<"id\t\tname\t\tprice\t\tstock"<<endl;
@@ -162,6 +167,7 @@ void menu (){
         {
             p[i].output();
         }
+        customer_input();
         break;
     
     default:
@@ -174,13 +180,49 @@ void menu (){
     
 }
 
-// void category_display(){
-//     cout<<"Please select the catagory of products you want to buy"<<endl<<endl;
-//     cout<<"To view electronics procducts enter 1"<<endl;
-//     cout<<"To view food items enter 2"<<endl;
-//     cout<<"To view stationary products enter 3"<<endl;
-//     cout<<"To view selfcare products 4"<<endl;
-//     cout<<"To view all products enter 5"<<endl;
-// }
+void customer_input(){
+    cout<<"Enter the id the product you want to buy"<<endl;
+    int product_input_id;
+    cin>>product_input_id;
+    product b;
+    for (int i = 0; i < p.size(); i++)
+    {
+        if (p[i].id==product_input_id)
+        {
+            b = p[i];
+            input_products.push_back(b);
+        }
+        
+    }
+    
+    level_customer_input:
+    
+    cout<<"If you want to buy more products enter 1"<<endl;
+    cout<<"If you want to checkout enter 2"<<endl;
+    cout<<"If you dont want to buy any product enter 3 to return to start"<<endl;
+    
 
-cout<<"This is our first project";
+
+    int number;
+    cin>>number;
+
+    if (number==1)
+    {
+        menu();
+    }
+    else if(number == 2){
+        // reciept();
+    }
+    else if(number == 3){
+        system("cls");
+        main();
+    } 
+    else{
+        cout<<"Please enter a valid input"<<endl;
+        cout<<"Press any key to continue";
+        getch();
+        goto level_customer_input;
+    }
+    
+}
+
