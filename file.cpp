@@ -3,6 +3,7 @@
 #include<vector>
 #include<conio.h>
 #include<time.h>
+#include<fstream>
 
 using namespace std;
 
@@ -11,6 +12,7 @@ void products_data();
 void category_display();
 void customer_input();
 void reciept();
+// void user_registration();
 
 
 
@@ -23,7 +25,7 @@ class product{
     }
 
     void output(){
-        cout<<id<<"\t\t"<<name<<"\t\t"<<price<<endl;
+        cout<<id<<"\t\t"<<name<<"    \t\t"<<price<<endl;
     }
 
 };
@@ -33,7 +35,7 @@ class bill{
     int id, price,  category, quantity;
     string name;
     void output(){
-        cout<<id<<"\t\t"<<name<<"\t\t"<<price<<"\t\t"<<quantity<<endl;
+        cout<<id<<"\t\t"<<name<<"    \t\t"<<price<<"\t\t"<<quantity<<endl;
     }
 };
 
@@ -56,12 +58,20 @@ int main()
     {
         // security:
         string username, password;
+        char ch;
         cout<<"hello owner"<<endl;
         cout<<"please enter username: ";
         cin>>username;
         cout<<"please enter password: ";
-        cin>>password;
-        if (username=="jaggi" && password=="xyz"   )
+        ch = getch();
+         while (ch!=13){
+            password.push_back(ch);
+            cout<<"x";
+            ch = getch();
+        }
+        cout<<endl;        
+        
+        if (username=="mini_market" && password=="uiet@2025"   )
         {
             products_data();
             cout<<"Products have been registered successfully"<<endl<<endl<<endl;
@@ -85,7 +95,6 @@ int main()
     } 
 
     else if(start_condition==2){
-        // category_display();
         menu();        
     }
 
@@ -102,16 +111,27 @@ int main()
 
 
 void products_data(){
-    cout<<"how many products u have ";
-        cin>>no_of_products;
-        product a;       
-        cout<<"enter id category name and price of the product"<<endl;
-
-        for (int i = 0; i < no_of_products; i++)
-        {
-            a.input();
-            p.push_back(a);
-        }  
+//    cout<<"How many products u have ";
+    cout<<"Enter the name of Product data file: ";
+    string name;
+    cin>>name;
+    fstream myfile;
+    myfile.open(name);
+    if(myfile.is_open()){
+    myfile>>no_of_products;
+    product s1;
+    for (int i = 0; i < no_of_products; i++)
+    {
+        myfile>>s1.id>>s1.category>>s1.name>>s1.price;
+        /* code */
+        p.push_back(s1);
+    }
+    
+    }  
+    else{
+        cout<<"error";
+    }
+    myfile.close();
 }
 
 void menu (){
@@ -119,11 +139,13 @@ void menu (){
     system("cls");
     cout<<"Hello Dear customer"<<endl;
     cout<<"Please select the catagory of products you want to buy"<<endl<<endl;
-    cout<<"To view electronics procducts enter 1"<<endl;
-    cout<<"To view food items enter 2"<<endl;
-    cout<<"To view stationary products enter 3"<<endl;
-    cout<<"To view selfcare products 4"<<endl;
-    cout<<"To view all products enter 5"<<endl;
+    cout<<"1-> Electronics procducts"<<endl;
+    cout<<"2-> Food items "<<endl;
+    cout<<"3-> Stationary products"<<endl;
+    cout<<"4-> Selfcare products "<<endl;
+    cout<<"5-> All products"<<endl<<endl;
+
+    cout<<"Please enter the product category you want to view here: ";
     cin>>input_category;
 
     system("cls");
@@ -131,7 +153,7 @@ void menu (){
     switch (input_category)
     {
     case 1:
-        cout<<"id\t\tname\t\tprice"<<endl<<endl;
+        cout<<"id\t\tname    \t\tprice"<<endl<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
             if (p[i].category==1)
@@ -142,7 +164,7 @@ void menu (){
         customer_input();
         break;
     case 2:
-        cout<<"id\t\tname\t\tprice"<<endl<<endl;
+        cout<<"id\t\tname    \t\tprice"<<endl<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
             if (p[i].category==2)
@@ -153,7 +175,7 @@ void menu (){
         customer_input();
         break;
     case 3:
-        cout<<"id\t\tname\t\tprice"<<endl<<endl;
+        cout<<"id\t\tname    \t\tprice"<<endl<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
              if (p[i].category==3)
@@ -164,7 +186,7 @@ void menu (){
         customer_input();
         break;
     case 4:
-        cout<<"id\t\tname\t\tprice"<<endl<<endl;
+        cout<<"id\t\tname    \t\tprice"<<endl<<endl;
         for (int i = 0;i < no_of_products; i++)
         {
              if (p[i].category==4)
@@ -175,7 +197,7 @@ void menu (){
         customer_input();
         break;
     case 5:
-        cout<<"id\t\tname\t\tprice"<<endl<<endl;
+        cout<<"id\t\tname    \t\tprice"<<endl<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
             p[i].output();
@@ -254,7 +276,7 @@ void reciept(){
     time_t mytime = time(NULL);
     cout<<"Purchase was made at: "<<ctime(&mytime)<<endl;
     cout<<"your bill"<<endl<<endl;
-    cout<<"id\t\tname\t\tprice\t\tquantity"<<endl;
+    cout<<"id\t\tname    \t\tprice\t\tquantity"<<endl<<endl;
     for (int i = 0; i < input_products.size() ; i++)
     {
         input_products[i].output();
