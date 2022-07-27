@@ -51,15 +51,16 @@ int main()
 {
     system("cls");
     start:
-    cout<<"if u are seller enter 1"<<endl;
-    cout<<"if u are buyer enter 2"<<endl;
+    cout<<"If you are seller enter 1"<<endl;
+    cout<<"If you are buyer enter 2"<<endl<<endl;
+    cout<<"Enter your input here: ";
     cin>>start_condition;
     if (start_condition==1)
     {
         // security:
         string username, password;
         char ch;
-        cout<<"hello owner"<<endl;
+        cout<<"Hello owner"<<endl;
         cout<<"please enter username: ";
         cin>>username;
         cout<<"please enter password: ";
@@ -74,7 +75,7 @@ int main()
         if (username=="mini_market" && password=="uiet@2025"   )
         {
             products_data();
-            cout<<"Products have been registered successfully"<<endl<<endl<<endl;
+            cout<<"\n\nProducts have been registered successfully"<<endl<<endl<<endl;
             cout<<"Press any key to return to start"<<endl;
             getch();
             // so that program can pause and start when we enter something
@@ -137,7 +138,7 @@ void products_data(){
 void menu (){
     level_category:
     system("cls");
-    cout<<"Hello Dear customer"<<endl;
+    cout<<"Hello Dear customer"<<endl<<endl;
     cout<<"Please select the catagory of products you want to buy"<<endl<<endl;
     cout<<"1-> Electronics procducts"<<endl;
     cout<<"2-> Food items "<<endl;
@@ -149,11 +150,11 @@ void menu (){
     cin>>input_category;
 
     system("cls");
-
+    cout<<"Please select the id of product you want to buy"<<endl<<endl;
     switch (input_category)
     {
     case 1:
-        cout<<"id\t\tname    \t\tprice"<<endl<<endl;
+        cout<<"Id\t\tName    \t\tPrice"<<endl<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
             if (p[i].category==1)
@@ -164,7 +165,7 @@ void menu (){
         customer_input();
         break;
     case 2:
-        cout<<"id\t\tname    \t\tprice"<<endl<<endl;
+        cout<<"Id\t\tName    \t\tPrice"<<endl<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
             if (p[i].category==2)
@@ -175,7 +176,7 @@ void menu (){
         customer_input();
         break;
     case 3:
-        cout<<"id\t\tname    \t\tprice"<<endl<<endl;
+        cout<<"Id\t\tName    \t\tPrice"<<endl<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
              if (p[i].category==3)
@@ -186,7 +187,7 @@ void menu (){
         customer_input();
         break;
     case 4:
-        cout<<"id\t\tname    \t\tprice"<<endl<<endl;
+        cout<<"Id\t\tName    \t\tPrice"<<endl<<endl;
         for (int i = 0;i < no_of_products; i++)
         {
              if (p[i].category==4)
@@ -197,7 +198,7 @@ void menu (){
         customer_input();
         break;
     case 5:
-        cout<<"id\t\tname    \t\tprice"<<endl<<endl;
+        cout<<"Id\t\tName    \t\tPrice"<<endl<<endl;
         for (int i = 0; i < no_of_products; i++)
         {
             p[i].output();
@@ -216,7 +217,8 @@ void menu (){
 }
 
 void customer_input(){
-    cout<<"\n\nEnter the id the product you want to buy"<<endl<<"Or if you want to return to main menu enter 0 "<<endl;
+    cout<<"\n\nPress 0 to return to main menu"<<endl<<endl<<endl;
+    cout<<"Enter your input here: ";
     int product_input_id, product_quantity;
     cin>>product_input_id;
     if (product_input_id==0 )
@@ -224,7 +226,7 @@ void customer_input(){
         menu();
     }
     
-    cout<<"how many pieces you want to buy: "<<endl;
+    cout<<"\nEnter the number of pieces you want to buy: ";
     cin>>product_quantity;
     bill b;
     for (int i = 0; i < p.size(); i++)
@@ -241,7 +243,7 @@ void customer_input(){
     
     level_customer_input:
     
-    cout<<"If you want to buy more products enter 1"<<endl;
+    cout<<"\n\n\nIf you want to buy more products enter 1"<<endl;
     cout<<"If you want to checkout enter 2"<<endl;
     cout<<"To cancel your order press 3 "<<endl;
     
@@ -276,7 +278,7 @@ void reciept(){
     time_t mytime = time(NULL);
     cout<<"Purchase was made at: "<<ctime(&mytime)<<endl;
     cout<<"your bill"<<endl<<endl;
-    cout<<"id\t\tname    \t\tprice\t\tquantity"<<endl<<endl;
+    cout<<"Id\t\tName    \t\tPrice\t\tQuantity"<<endl<<endl;
     for (int i = 0; i < input_products.size() ; i++)
     {
         input_products[i].output();
